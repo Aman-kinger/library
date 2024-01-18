@@ -26,6 +26,9 @@ books.push(theHungerGames)
 
 
 const booksGrid = document.getElementById('booksGrid')
+const addBookForm = document.getElementById('addBookForm')
+const addBookModal = document.getElementById('addBookModal')
+const overlay = document.getElementById('overlay')
 
 const createBookCard = (book) => {
     const bookCard = document.createElement('div')
@@ -76,5 +79,19 @@ for (let book of books) {
     createBookCard(book)
 } 
 
+const openAddBookModal = () => {
+  addBookForm.reset()
+  addBookModal.classList.add('active')
+  overlay.classList.add('active')
+}
+
+const closeAddBookModal = () => {
+  addBookModal.classList.remove('active')
+  overlay.classList.remove('active')
+  errorMsg.classList.remove('active')
+  errorMsg.textContent = ''
+}
 
 
+addBookBtn.onclick = openAddBookModal
+overlay.onclick = closeAddBookModal
