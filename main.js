@@ -22,19 +22,6 @@ function removeBook(bookTitle){
   books.splice(books.findIndex((book) => book.title === bookTitle), 1)
 }
 
-const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, false);
-books.push(theHobbit);
-
-const harryPotter = new Book('Harry Potter and the Philosopher\'s Stone', 'J.K. Rowling', 223, true);
-books.push(harryPotter)
-
-const theLordOfTheRings = new Book('The Lord of the Rings', 'J.R.R. Tolkien', 1137, true);
-books.push(theLordOfTheRings)
-
-const theHungerGames = new Book('The Hunger Games', 'Suzanne Collins', 374, true);
-books.push(theHungerGames)
-
-
 const booksGrid = document.getElementById('booksGrid')
 const addBookForm = document.getElementById('addBookForm')
 const addBookModal = document.getElementById('addBookModal')
@@ -85,10 +72,6 @@ const createBookCard = (book) => {
     bookCard.appendChild(buttonGroup)
     booksGrid.appendChild(bookCard)
   }
-
-  for (let book of books) {
-    createBookCard(book)
-}
 
 const openAddBookModal = () => {
   addBookForm.reset()
@@ -164,5 +147,5 @@ booksGrid.onclick = (e) => {
   }
   if (e.target.classList.contains('btn-remove')) {
     removeBookCard(e)
-  }
+  } 
 }
