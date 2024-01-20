@@ -39,7 +39,7 @@ const booksGrid = document.getElementById('booksGrid')
 const addBookForm = document.getElementById('addBookForm')
 const addBookModal = document.getElementById('addBookModal')
 const overlay = document.getElementById('overlay')
-
+const addBookBtn = document.getElementById('addBookBtn')
 
 const createBookCard = (book) => {
     const bookCard = document.createElement('div')
@@ -146,12 +146,23 @@ const removeBookCard = (e) => {
   updateBooksGrid()
 }
 
+const toggleRead = (e) => {
+  const bookCard = e.target.parentNode.parentNode
+  const bookTitle = bookCard.firstChild.textContent.replace(/"/g, '')
+  const book = books.find((book) => book.title === bookTitle)
+  book.read = !book.read
+  updateBooksGrid()
+}
+
 addBookBtn.onclick = openAddBookModal
 overlay.onclick = closeAddBookModal
 addBookForm.onsubmit = addBook
+
 booksGrid.onclick = (e) => {
+  if (e.target.classList.contains('btn-light-green') || e.target.classList.contains('btn-light-red')) {
+    toggleRead(e)
+  }
   if (e.target.classList.contains('btn-remove')) {
     removeBookCard(e)
   }
 }
-
